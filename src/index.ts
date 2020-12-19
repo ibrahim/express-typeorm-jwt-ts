@@ -11,7 +11,7 @@ if (result.error) {
 
 //Connects to the Database -> then starts the express
 createConnection()
-  .then(async (_connection) => {
+  .then(async () => {
     // Create a new express application instance
     app.listen(3000, () => {
       /* eslint-disable no-console */
