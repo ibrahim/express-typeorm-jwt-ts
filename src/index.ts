@@ -6,7 +6,7 @@ import { app } from "./app";
 const result = dotenv.config();
 
 if (result.error) {
-    throw result.error;
+  throw result.error;
 }
 
 //Connects to the Database -> then starts the express
