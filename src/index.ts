@@ -1,12 +1,12 @@
-import "reflect-metadata";
 import * as dotenv from "dotenv";
+import "reflect-metadata";
 import { createConnection } from "typeorm";
 import { app } from "./app";
 
 const result = dotenv.config();
 
 if (result.error) {
-  throw result.error;
+    throw result.error;
 }
 
 //Connects to the Database -> then starts the express
