@@ -3,7 +3,7 @@ import "reflect-metadata";
 import { createConnection } from "typeorm";
 import { app } from "./app";
 
-const result = dotenv.config();
+const _result = dotenv.config();
 
 if (result.error) {
   throw result.error;
