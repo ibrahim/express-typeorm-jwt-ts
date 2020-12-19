@@ -6,9 +6,9 @@ import { validate } from "class-validator";
 import { User } from "../entity/User";
 import config from "../config/config";
 
-export const login = async (req: Request, res: Response) => {
+export const login = async (req: Request, res: Response): Promise<any> => {
   //Check if username and password are set
-  let { username, password } = req.body;
+  const { username, password } = req.body;
   if (!(username && password)) {
     res.status(400).send({ error: "username and password are required" });
   }
@@ -39,7 +39,10 @@ export const login = async (req: Request, res: Response) => {
   res.json({ token });
 };
 
-export const changePassword = async (req: Request, res: Response) => {
+export const changePassword = async (
+  req: Request,
+  res: Response
+): Promise<any> => {
   //Get ID from JWT
   const id = res.locals.jwtPayload.userId;
 

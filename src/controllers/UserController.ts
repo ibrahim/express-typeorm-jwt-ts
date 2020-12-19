@@ -4,7 +4,7 @@ import { validate } from "class-validator";
 
 import { User } from "../entity/User";
 
-export const listAll = async (req: Request, res: Response) => {
+export const listAll = async (req: Request, res: Response): Promise<any> => {
   //Get users from database
   const userRepository = getRepository(User);
   const users = await userRepository.find({
@@ -15,7 +15,7 @@ export const listAll = async (req: Request, res: Response) => {
   res.send(users);
 };
 
-export const getOneById = async (req: Request, res: Response) => {
+export const getOneById = async (req: Request, res: Response): Promise<any> => {
   //Get the ID from the url
   const id: string = req.params.id;
 
@@ -31,10 +31,10 @@ export const getOneById = async (req: Request, res: Response) => {
   }
 };
 
-export const newUser = async (req: Request, res: Response) => {
+export const newUser = async (req: Request, res: Response): Promise<any> => {
   //Get parameters from the body
-  let { username, password, role } = req.body;
-  let user = new User();
+  const { username, password, role } = req.body;
+  const user = new User();
   user.username = username;
   user.password = password;
   user.role = role;
@@ -62,7 +62,7 @@ export const newUser = async (req: Request, res: Response) => {
   res.status(201).send("User created");
 };
 
-export const editUser = async (req: Request, res: Response) => {
+export const editUser = async (req: Request, res: Response): Promise<any> => {
   //Get the ID from the url
   const id = req.params.id;
 
@@ -100,14 +100,14 @@ export const editUser = async (req: Request, res: Response) => {
   res.status(204).send();
 };
 
-export const deleteUser = async (req: Request, res: Response) => {
+export const deleteUser = async (req: Request, res: Response): Promise<any> => {
   //Get the ID from the url
   const id = req.params.id;
 
   const userRepository = getRepository(User);
-  let user: User;
+  let _user: User;
   try {
-    user = await userRepository.findOneOrFail(id);
+    _user = await userRepository.findOneOrFail(id);
   } catch (error) {
     res.status(404).send("User not found");
     return;
